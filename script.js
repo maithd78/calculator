@@ -1,93 +1,121 @@
-const numButtons = document.querySelectorAll(".numButton")
-const operators = document.querySelectorAll(".operator")
-const highOperate = document.querySelector(".operate")
-const clear = document.querySelector("#clr")
-const display = document.querySelector(".disp")
+const numButtons    = document.querySelectorAll(".numButton")
+const operators     = document.querySelectorAll(".operator")
+const operate       = document.querySelector(".operate")
+const display       = document.querySelector(".disp")
+const clear         = document.querySelector("#clr")
+const backspace     = document.querySelector("#bkspc")
+const decimal       = document.querySelector(".decimal")
 
-// functions for operators(+,-,/,*)
-const addition = () => display.textContent = left + right;
-const subtract = () => display.textContent = left - right;
-const division = () => display.textContent = left / right;
-const mulitiply = () => display.textContent = left * right;
+// set default vals
+let displayVal  = 0; 
+let left        = "";
+let right       = "";
+let operator    = "";
 
+// reset to default vals
+function clr() {
+    left        = "";
+    right       = "";
+    operator    = "";
+    currentInput = "left"
+}
 
-let left = 0;
-let right = 0;
-let operator = "";
-let sendNextL = "";
-let sendNextR = "";
-let currentInput = "left";
+// create operator functions
+const add  = () => displayVal = +left + +right; 
+const sub  = () => displayVal = +left - +right; 
+const div  = () => displayVal = +left / +right; 
+const mult = () => displayVal = +left * +right;
 
-function operate() {
-    highOperate.addEventListener("click", () => {
-        currentInput = "operate";
-        if (operator === "add") {return addition(left,right)}
-        if (operator === "sub") {return subtract(left,right)} 
-        if (operator === "div") {
-            if (right == 0) {
-                return display.textContent = "Can't divide by zero"
-            }
-            return division(left,right)
+// run this function when clicking =
+function operations() {
+    if (operator === "+") {return add()}
+    if (operator === "-") {return sub()} 
+    if (operator === "/") {
+        if (right == 0 || left == 0) {
+            displayVal = "Can't divide by zero"
+            return display.textContent = displayVal;
         }
-        if (operator === "mult") {return mulitiply(left,right)}
-
-    })
+        return div()
+    }
+    if (operator === "*") {return mulitiply()}
 }
 
-// function cal => input => leftinput => operator => input => rightinput => nextoperator or operateKey
-
-
-function getInput() {
-    numButtons.forEach((button) => {    
-        button.addEventListener("click", () => {
-            if (currentInput == "operate") {
-                left = 0;
-                right = 0;
-                sendNextL = "";
-                sendNextR = "";
-                operator = "";
-                currentInput = "left";
-            }
-            if (currentInput == "left") {
-                sendNextL =  "" + sendNextL + button.id
-                left = +sendNextL;
-            } else if (currentInput == "right") {
-                sendNextR =  "" + sendNextR + button.id
-                right = +sendNextR;
-            }
-        })
+// numpad logic
+currentInput = "left";
+numButtons.forEach((button) => {
+    button.addEventListener("click", function() {
+        if (currentInput == "left") {
+            left = "" + left +button.id;
+            display.textContent = left;
+        }
+        if (currentInput == "right") {
+            right = "" + right +button.id;
+            display.textContent = right;
+        }
     })
-    operators.forEach((button) => {
-        button.addEventListener("click", () => {
-            if (operator !== "") {
-                currentInput = "left";
-                sendNextL = "";
-                sendNextR = "";
-                if (operator === "add") {return addition(left,right)}
-                if (operator === "sub") {return subtract(left,right)} 
-                if (operator === "div") {
-                    if (right == 0) {
-                        return display.textContent = "Can't divide by zero"
-                    }
-                    return division(left,right)
-                }
-                if (operator === "mult") {return mulitiply(left,right)}
-            }
-            currentInput = "right";
-            operator = button.id;
-        })
-    })
-    operate();
-}
-
-getInput();
-
-clear.addEventListener("click", () => {
-    currentInput = "left";
-    left = 0;
-    right = 0;
-    sendNextL = "";
-    sendNextR = "";
-    operator = "";
-    display.textContent = 0;
 })
+operators.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (operator == "") {
+            operator = button.id;
+            display.textContent = operator;
+            currentInput = "right";
+        } else {
+            operations();
+            left = displayVal;
+            right = "";
+            if (displayVal == "Can't divide by zero") {
+                return display.textContent = displayVal;
+            }   
+            display.textContent = Math.round(left * 10) /10;
+            operator = button.id;
+            currentInput = "right";
+        }
+   })
+})
+decimal.addEventListener("click", () => {
+    if (currentInput == "left") {
+        if (!left.includes(".")) {
+            left = left + decimal.id;
+            display.textContent = left;
+        }
+    } else {
+        if (!right.includes(".")) {
+            right = right + decimal.id;
+            display.textContent = right;
+        }
+    }
+})
+operate.addEventListener("click", () => {
+    operations();
+    if (displayVal == "Can't divide by zero") {
+        return display.textContent = displayVal;
+    }
+    display.textContent = Math.round(displayVal * 10) /10;
+    clr();
+})
+clear.addEventListener("click", () => {
+    clr();
+    displayVal = 0;
+    display.textContent = displayVal;
+})
+backspace.addEventListener("click", () => {
+    if (currentInput == "left") {
+        left = left.slice(0,-1);
+        if (left == "") {
+            display.textContent = displayVal = 0;       
+        } else display.textContent = left;
+    } else if (currentInput == "right") {
+        right = right.slice(0,-1);
+        if (right == "") {
+            display.textContent = displayVal = 0;       
+        } else display.textContent = right;
+    }
+})
+
+// keypress;
+
+// document.addEventListener("keydown", (event) => {
+//     currentKey = event.key
+//     keypress;
+// })
