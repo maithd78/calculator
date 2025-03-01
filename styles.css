@@ -1,0 +1,127 @@
+body {
+    font-family: sans-serif;
+    text-shadow: 1px 1px 2px #eeaeca;
+    margin: 0;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, #eeaeca 0%, #0253b1 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+.display {
+    margin: auto;
+    margin-bottom: 10px;
+    width: 85%;
+    text-align: right;
+    padding: 10px;
+    border: 2px solid #036BE3;
+    border-radius: 12px;
+    background-color: #036BE3;
+}
+
+.input {
+    font-size: 40px;
+    color: white;
+}
+.expression {
+    min-height: 18px;
+    color: white;
+}
+
+/* calculator body properties */
+.calc-bg {
+    display: flex;
+    justify-content: center;
+
+
+}
+.calc {
+    display: flex;
+    flex-direction: column;
+    max-width: 326px;
+    padding: 40px 10px;
+    border-radius: 12px;
+    background-color: #1f67b9
+}
+.calc-body {
+    display: flex;
+    gap: 2px;
+} 
+.nums {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    width: 244px;
+    gap: inherit;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+    width: 80;
+    gap: inherit;
+}
+
+
+/* button properties */
+button {
+    text-shadow: inherit;
+    font-size: large;
+    color: white;
+    height: 80px;
+    width: 80px;
+    border: 2px solid #036BE3;
+    border-radius: 50%;
+    background-color: rgba(0, 132, 255, 0);
+
+}
+
+button:hover {
+    transform: scale(1.02);
+    background-color: #2F80DC;
+}
+#zero {width: 162px;} 
+#equal {
+    color: black;
+    border: none;
+    height: 162px; 
+    background-color: #FF7B00;
+}
+#equal:hover {background-color: #FF9533;}
+#plus {height: 162px;}
+#clear {width: 162px;}
+.num-operator {border: none; background-color: #0084ff;}
+.long-button {border-radius: 45px;}
+
+.num-operator:hover {background-color: #339DFF;}
+
+/* header and footer properties */
+header {  
+    margin:0;
+    text-align: center;
+    padding-bottom: 5%;
+    color: white;
+}
+footer {   
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background-color: #1f2937;
+
+}
+footer>p {
+    vertical-align:middle;
+}
+.top-logo {
+    padding-left: 2px;
+    height: 24px;
+    width: 24px;
+}
+.git-logo {
+    padding-left: 2px;
+    height: 24px;
+    width: 24px;
+}
