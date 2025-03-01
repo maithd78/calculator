@@ -32,12 +32,12 @@ function operations() {
     if (operator === "-") {return sub()} 
     if (operator === "/") {
         if (right == 0 || left == 0) {
-            displayVal = "Can't divide by zero"
+            displayVal = "ERR !DIV 0";
             return display.textContent = displayVal;
         }
         return div()
     }
-    if (operator === "*") {return mulitiply()}
+    if (operator === "*") {return mult()}
 }
 
 // numpad logic
@@ -45,11 +45,11 @@ currentInput = "left";
 numButtons.forEach((button) => {
     button.addEventListener("click", function() {
         if (currentInput == "left") {
-            left = "" + left +button.id;
+            left = "" + left +button.value;
             display.textContent = left;
         }
         if (currentInput == "right") {
-            right = "" + right +button.id;
+            right = "" + right +button.value;
             display.textContent = right;
         }
     })
@@ -57,18 +57,18 @@ numButtons.forEach((button) => {
 operators.forEach((button) => {
     button.addEventListener("click", () => {
         if (operator == "") {
-            operator = button.id;
+            operator = button.value;
             display.textContent = operator;
             currentInput = "right";
         } else {
             operations();
             left = displayVal;
             right = "";
-            if (displayVal == "Can't divide by zero") {
+            if (displayVal == "ERR !DIV 0") {
                 return display.textContent = displayVal;
             }   
             display.textContent = Math.round(left * 10) /10;
-            operator = button.id;
+            operator = button.value;
             currentInput = "right";
         }
    })
@@ -88,7 +88,7 @@ decimal.addEventListener("click", () => {
 })
 operate.addEventListener("click", () => {
     operations();
-    if (displayVal == "Can't divide by zero") {
+    if (displayVal == "ERR !DIV 0") {
         return display.textContent = displayVal;
     }
     display.textContent = Math.round(displayVal * 10) /10;

@@ -1,17 +1,89 @@
+
+.main {
+    position: absolute;
+    /* top: 50%; */
+    left: 50%;
+    /* margin-top: -160px; */
+    margin-left: -160px;
+    width: 320px;
+    background-color: #00ADE2;
+    padding: 20px;
+    border-radius: 20px;
+    border: 4px solid #16C8FF;
+}
+
 .disp {
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
-    
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+
+    text-align: right;
+    height: 48px;
+    font-size: 42px;
+    border: 4px solid black;
+    /* background-image: linear-gradient(); */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    ;
 }
 
 .calBody {
+    margin: auto;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap-reverse;
+    padding: 10px 0px;
+
+
+}
+.column2 {
+    display: flex;
     flex-direction: column;
-    align-items: center;
+}
+.column1 {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: center ;
+}
+.numpad {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
 }
 
-.numButton {
-    
+button {
+    margin: 2px auto;
+    /* color: white; */
+    font-size: 20px;
+    width: 74px;
+    height: 74px;
+    vertical-align: middle;
+    background-color: #16C8FF;
+    transition-duration: 0.2s;
+    border-width: 4px;
+    border-radius: 8px;
+    border-style: solid;
+    /* border-color: rgb(217, 255, 2); */
+}
+button:hover {
+    transform: scale(1.1);
+}
+
+#zero {
+    flex: 0 0 66%;
+    width: 50%;
+}
+#operate {
+    margin: auto ;
+    height: 154px;
+    vertical-align: top;
+    background-color: #ffff00;
+}
+#operate:hover {
+    background-color: #343434;
+}
+#bkspc {
+    font-size: 26px;
 }
