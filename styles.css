@@ -1,10 +1,11 @@
+::-webkit-scrollbar {display: none;}
+
 body {
     font-family: sans-serif;
     text-shadow: 1px 1px 2px #eeaeca;
     margin: 0;
     background: rgb(238,174,202);
     background: radial-gradient(circle, #eeaeca 0%, #0253b1 100%);
-    background-repeat: no-repeat;
     background-attachment: fixed;
 
 }
@@ -15,18 +16,28 @@ body {
     width: 85%;
     text-align: right;
     padding: 10px;
+    padding-top: 20px;
     border: 2px solid #036BE3;
     border-radius: 12px;
     background-color: #036BE3;
-}
 
-.input {
-    font-size: 40px;
+}
+/* .dispInput: */
+.dispInput {
+    font-size: 36px;
     color: white;
+    overflow: scroll;
+    direction: rtl;
 }
 .expression {
-    min-height: 18px;
+    text-align: left;
+    font-size: 24px;
+    height: 28px;
     color: white;
+    overflow-x: scroll;
+    white-space: nowrap;
+    direction: rtl;
+    
 }
 
 /* calculator body properties */
@@ -89,7 +100,7 @@ button:hover {
 #equal:hover {background-color: #FF9533;}
 #plus {height: 162px;}
 #clear {width: 162px;}
-.num-operator {border: none; background-color: #0084ff;}
+.db {border: none; background-color: #0084ff;}
 .long-button {border-radius: 45px;}
 
 .num-operator:hover {background-color: #339DFF;}
@@ -102,7 +113,7 @@ header {
     color: white;
 }
 footer {   
-    position: absolute;
+    position: fixed;
     bottom: 0;
     margin: 0;
     width: 100%;
