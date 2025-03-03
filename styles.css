@@ -98,7 +98,7 @@ button:hover {
     background-color: #FF7B00;
 }
 #equal:hover {background-color: #FF9533;}
-#plus {height: 162px;}
+.plus {height: 162px;}
 #clear {width: 162px;}
 .db {border: none; background-color: #0084ff;}
 .long-button {border-radius: 45px;}
