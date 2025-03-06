@@ -135,8 +135,6 @@ operatorB.forEach((button) => {
             a                           = display;
             display                     = "";
             operator                    = button.id;
-            console.log(operator);
-
             expression                  = a +" "+ button.textContent;
             return dispExp.textContent  = expression;
         }
@@ -144,8 +142,6 @@ operatorB.forEach((button) => {
             b                           = display;
             calc();
             operator                    = button.id;
-            console.log(operator);
-            
             a                           = sum;
             expression                  = expression + " " + b + " " + button.textContent;
             b                           = "";
@@ -178,7 +174,6 @@ function updateOperator() {
     if (display !== "" && a !== "" && b == "") {
         b                           = display;
         calc();
-        console.log(sum);
         operator                    = event.key;
         a                           = sum;
         expression                  = expression + " " + b + " " + event.key;
